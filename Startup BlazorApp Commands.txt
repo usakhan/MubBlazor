@@ -1,0 +1,25 @@
+1.First we created a Blazor app from visual studio. 
+2.Add NugGet Package Named ElectronNET.API.
+3.Then i Open Project Terminal and Apply Commands.
+4.Install ElectronNET.API NuGet package in the application.
+dotnet add package ElectronNET.API.
+5.Create a local .NET tool manifest file This will create a manifest file.
+dotnet new tool-manifest.
+6.Install the electronize tool locally in the project
+dotnet tool install ElectronNET.CLI.
+7.Now  configure Electron.NET manifest tool and update the launch profile of the application
+dotnet electronize init
+8. Then to integrate Electron.Net in the application I made some changes in the program.cs file.(line 12 to 22)
+builder.Services.AddElectron();
+builder.WebHost.UseElectron(args);
+
+if (HybridSupport.IsElectronActive)
+{
+    // Open the Electron-Window here
+    Task.Run(async () => {
+        var window = await Electron.WindowManager.CreateWindowAsync();
+    });
+}
+9.Run The Application 
+dotnet electronize start.
+
